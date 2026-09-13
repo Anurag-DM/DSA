@@ -1,21 +1,49 @@
 // 3483. Unique 3-Digit Even Numbers
+// Time: O(1)
+// Space: O(1)
 class Solution {
 public:
-    int totalNumbers(auto& digits) {
-        int f[10] = {0};
-        int res = 0;
+    int totalNumbers(vector<int>& digits) {
+        vector<int> freq(10, 0);
 
-        for (auto& d : digits)
-            f[d]++;
+        for(int i:digits){
+            freq[i]++;
+        }
 
-        for (int i = 1; i < 10; i++) 
-            for (int j = 0; j < 10; j++) 
-                for (int k = 0; k < 9; k += 2) 
-                    res += f[i] > 0 &&
-                           f[j] > (i == j) &&
-                           f[k] > (i == k) + (j == k);
-        
+        int distinctDigits = 0; 
 
-        return res;
+        for(int i = 0; i< 10; i++){
+            if(freq[i] > 0)
+                distinctDigits++;
+        }
+
+        int ans = 0;
+
+        for(int i = 0; i<9; i += 2){ //i indicates the last digit
+
+            if(freq[i] == 0)
+                continue;
+
+            freq[i]--;
+
+            for(int first = 1; first <= 9; first++){
+                if(freq[first] == 0)
+                    continue;
+                
+                freq[first]--;
+
+                for(int second = 0; second <= 9; second++){
+                    if(freq[second] > 0)
+                        ans++;
+                }
+
+                freq[first]++;
+            }
+
+            freq[i]++;
+        }
+
+        return ans;
+
     }
 };
