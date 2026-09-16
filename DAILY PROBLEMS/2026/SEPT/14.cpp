@@ -12,4 +12,4 @@ public:
 
         return left < right && bottom < top;
     }
-};
+};1
