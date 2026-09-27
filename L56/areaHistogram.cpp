@@ -15,6 +15,7 @@ private:
             ans[i] = s.top();
             s.push(i);
         }
+        
         return ans;
     }
     

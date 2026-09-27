@@ -1,3 +1,5 @@
+#include <bits/stdc++.h>
+
 /************************************************************
 
     Following is the linked list node structure.
@@ -22,50 +24,48 @@
 
 ************************************************************/
 
-void solve(Node<int>* first, Node<int>* second) {
-    
-    
-    Node* curr1 = first;
-    Node* next1 = curr1 -> next;
-    
-    Node* curr2 = second;
-    Node* next2 = curr2 -> next;
-    
-    while(next1 != NULL && curr2 != NULL) {
-        
-        if( (curr2 -> data >= curr1 -> data ) 
-           && ( curr2 -> data <= next1 -> data)) {
-            
-            curr1 -> next = curr2;
-            curr2 -> next = next1;
-            curr1 = curr2;
-            curr2 = next2;
-        }
-        else {
-            
-        }
-        
-        
-    }
-    
-    
-}
-
 Node<int>* sortTwoLists(Node<int>* first, Node<int>* second)
 {
-    if(first == NULL)
+    if(first==NULL)
         return second;
-    
-    if(second == NULL)
+    if(second==NULL)
         return first;
-    
-    if(first -> data <= second -> data ){
-        solve(first, second);
+
+    Node<int>* t1=NULL;
+    Node<int>* t2=first;
+    Node<int>* t3=second;
+
+    if(first->data<second->data){
+        t1=first;
+        t2=t2->next;
     }
-    else
-    {
-        solve(second, first);
+    else{
+        t1=second;
+        t3=t3->next;
     }
     
-    
+    Node<int>* head=t1;
+
+    while(t2!=NULL && t3!=NULL){
+        if(t2->data<t3->data){
+            t1->next=t2;
+            t2=t2->next;
+        }
+        else{
+            t1->next=t3;
+            t3=t3->next;
+        }
+        t1=t1->next;
+    }
+    while(t2!=NULL){
+        t1->next=t2;
+        t2=t2->next;
+        t1=t1->next;
+    }
+    while(t3!=NULL){
+        t1->next=t3;
+        t3=t3->next;
+        t1=t1->next;
+    }
+    return head;
 }
