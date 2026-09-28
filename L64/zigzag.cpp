@@ -196,13 +196,18 @@ class Solution {
         
         if(root==NULL)
             return v;
+
         queue<Node*> q;
+
         q.push(root);
         q.push(NULL);
+
         bool flag=true;//left to right
+
         while(!q.empty()){
             Node* temp=q.front();
             q.pop();
+
             if(temp==NULL){
                 if(flag==true){
                     for(int i=0;i<v.size();i++)
@@ -212,15 +217,19 @@ class Solution {
                     for(int i=v.size()-1;i>=0;i--)
                         ans.push_back(v[i]);
                 }
+
                 vector<int>().swap(v);
                 flag=!flag;
+
                 if(!q.empty())
                     q.push(NULL);
             }
             else{
                 v.push_back(temp->data);
+
                 if(temp->left)
                     q.push(temp->left);
+                    
                 if(temp->right)
                     q.push(temp->right);
             }

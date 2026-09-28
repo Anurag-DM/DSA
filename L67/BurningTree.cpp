@@ -20,6 +20,7 @@ class Solution
     nodetoParent[root] = NULL;
     q.push(root);
     Node *res = NULL;
+
     while (!q.empty())
     {
       Node *front = q.front();
@@ -39,6 +40,7 @@ class Solution
         q.push(front->right);
       }
     }
+
     return res;
   }
 
@@ -49,27 +51,32 @@ class Solution
     q.push(root);
     unordered_map<Node *, bool> visited;
     visited[root] = 1;
+
     while (!q.empty())
     {
       int size = q.size();
       bool flag = 0;
+
       for (int i = 0; i < size; i++)
       {
         Node *temp = q.front();
         Node *parent = nodetoParent[temp];
         q.pop();
+
         if (temp->left && visited[temp->left] == 0)
         {
           flag = 1;
           q.push(temp->left);
           visited[temp->left] = 1;
         }
+
         if (temp->right && visited[temp->right] == 0)
         {
           flag = 1;
           q.push(temp->right);
           visited[temp->right] = 1;
         }
+
         if (parent && visited[parent] == 0)
         {
           flag = 1;
@@ -77,9 +84,11 @@ class Solution
           visited[parent] = 1;
         }
       }
+      
       if (flag == 1)
         ans++;
     }
+
     return ans;
   }
 

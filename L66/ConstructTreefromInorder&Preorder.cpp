@@ -15,15 +15,16 @@ public:
 
 class Solution
 {
-  Node *solve(vector<int> &inorder, vector<int> &preorder, int &index, int instart, int inend, int n, unordered_map<int, int> nodetoIndex)
+  Node *solve(vector<int> &inorder, vector<int> &preorder, int &index, int instart, int inend, int n, unordered_map<int, int> &nodetoIndex)
   {
     if (index >= n || instart > inend)
-    {
       return NULL;
-    }
+
     int element = preorder[index++];
     int position = nodetoIndex[element];
+
     Node *root = new Node(element);
+
     root->left = solve(inorder, preorder, index, instart, position - 1, n, nodetoIndex);
     root->right = solve(inorder, preorder, index, position + 1, inend, n, nodetoIndex);
     return root;

@@ -19,9 +19,12 @@ class Solution {
         vector<int> v;
         
         map<int,vector<int>> m;
+
         if(root==NULL)
             return v;
+
         solve(root,m,0);
+        
         for(auto i:m){
             for(int j:i.second){
                 v.push_back(j);

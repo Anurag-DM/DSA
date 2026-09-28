@@ -35,6 +35,7 @@ public:
       int front = q.front();
       q.pop();
       ans.push_back(front);
+      
       for (auto i : adj[front])
       {
         indegree[i]--;

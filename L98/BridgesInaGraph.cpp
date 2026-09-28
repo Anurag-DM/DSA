@@ -10,6 +10,7 @@ void dfs(int node, int &timer, vector<int> &discovery, vector<int> &low, int par
   {
     if (nbr == parent)
       continue;
+    
     if (!visited[nbr])
     {
       dfs(nbr, timer, discovery, low, node, visited, result, adj);

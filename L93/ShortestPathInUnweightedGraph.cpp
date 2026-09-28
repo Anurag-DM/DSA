@@ -12,6 +12,7 @@ vector<int> shortestPath(vector<pair<int, int>> edges, int n, int m, int s, int 
     adj[u].push_back(v);
     adj[v].push_back(u);
   }
+
   vector<bool> visited(n + 1, 0);
   vector<int> parent(n + 1, 0);
   queue<int> q;
@@ -23,6 +24,7 @@ vector<int> shortestPath(vector<pair<int, int>> edges, int n, int m, int s, int 
   {
     int front = q.front();
     q.pop();
+
     for (auto i : adj[front])
     {
       if (!visited[i])
@@ -33,13 +35,16 @@ vector<int> shortestPath(vector<pair<int, int>> edges, int n, int m, int s, int 
       }
     }
   }
+
   vector<int> ans;
   int dest = t;
+  
   while (dest != -1)
   {
     ans.push_back(dest);
     dest = parent[dest];
   }
+
   reverse(ans.begin(), ans.end());
   return ans;
 }

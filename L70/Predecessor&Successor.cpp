@@ -33,6 +33,7 @@ pair<int, int> predecessorSuccessor(TreeNode *root, int key)
   }
   if (root == NULL)
     return {pred, succ};
+  
   TreeNode *leftTree = root->left, *rightTree = root->right;
   while (leftTree != NULL)
   {

@@ -22,13 +22,16 @@ vector<int> topologicalSort(vector<vector<int>> &edges, int v, int e)
 
     adj[u].push_back(v);
   }
+
   stack<int> s;
   unordered_map<int, bool> visited;
+
   for (int i = 0; i < v; i++)
   {
     if (!visited[i])
       dfs(adj, visited, i, s);
   }
+  
   vector<int> ans;
   while (!s.empty())
   {

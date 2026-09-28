@@ -114,6 +114,7 @@ class Solution
         while(!q.empty()) {
             pair<Node*, pair<int,int> > temp = q.front();
             q.pop();
+            
             Node* frontNode = temp.first;
             int hd = temp.second.first;
             int lvl = temp.second.second;

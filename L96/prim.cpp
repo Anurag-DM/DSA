@@ -20,6 +20,7 @@ vector<pair<pair<int, int>, int>> calculatePrimsMST(int n, int m, vector<pair<pa
     for(int i=1;i<n;i++){
         int mini=INT_MAX;
         int u;
+        
         for(int v=1;v<=n;v++){
             if(mst[v]==false && key[v]<mini){
                 mini=key[v];

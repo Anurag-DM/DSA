@@ -15,13 +15,16 @@ class Solution
   {
     if (root == NULL)
       return;
+
     solve(root->left, i, k, ans);
+
     i++;
     if (i == k)
     {
       ans = root->val;
       return;
     }
+    
     solve(root->right, i, k, ans);
   }
 

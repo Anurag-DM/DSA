@@ -107,7 +107,7 @@ class Solution{
     pair<int,int> solve(Node* root) {
         //base case
         if(root == NULL) {
-            pair<int,int> p = make_pair(0,0);
+            pair<int,int> p = make_pair(0,0);  //{include, exclude}
             return p;
         }
         

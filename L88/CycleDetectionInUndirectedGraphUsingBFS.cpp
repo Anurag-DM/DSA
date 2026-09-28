@@ -7,10 +7,12 @@ void bfs(unordered_map<int, list<int>> &adj, unordered_map<int, bool> &visited, 
   queue<int> q;
   q.push(node);
   visited[node] = true;
+
   while (!q.empty())
   {
     int front = q.front();
     q.pop();
+    
     for (auto i : adj[front])
     {
       if (!visited[i])
@@ -43,9 +45,11 @@ string cycleDetection(vector<vector<int>> &edges, int n, int m)
     adj[u].push_back(v);
     adj[v].push_back(u);
   }
+
   unordered_map<int, bool> visited(n + 1);
   bool ans = false;
   unordered_map<int, int> parent;
+
   for (int i = 1; i <= n; i++)
   {
     if (ans == true)

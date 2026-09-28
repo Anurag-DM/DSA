@@ -175,13 +175,15 @@ class Solution {
         //if we had passes vector by value here time complexity would be O(n2) as copying the vector for each call
         if(root==NULL)
             return;
+
         v.push_back(root->data);
+
         if(root->data==node){
-            int count=0;
+            int count = 0;
             for(int i=v.size()-2;i>=0;i--){
                 count++;
                 if(count==k){
-                    ans=v[i];
+                    ans = v[i];
                     return;
                 }
             }
