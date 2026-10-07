@@ -1,23 +1,30 @@
+// 856. Score of Parentheses
+// Time : O(n)
+// Space : O(1)
+
 class Solution {
 public:
     int scoreOfParentheses(string s) {
-        return F(s, 0, s.length());
-    }
+        vector<int> brack(27, 0);
 
-private:
-    int F(const string& s, int i, int j) {
-        int ans = 0, bal = 0;
-        for (int k = i; k < j; ++k) {
-            bal += (s[k] == '(' ? 1 : -1);
-            if (bal == 0) {
-                if (k - i == 1) {
-                    ans++;
-                } else {
-                    ans += 2 * F(s, i + 1, k);
-                }
-                i = k + 1;
+        int lvl = 0, temp = 0, ans = 0;
+        stack<int> st;
+
+        for(char c : s){
+            if(c == '('){
+                st.push(++lvl);
+            }
+            else{
+                int level = st.top();
+                st.pop();
+
+                brack[level] += max(2 * brack[level + 1], 1);
+                brack[level + 1] = 0;
+
+                lvl--;
             }
         }
-        return ans;
+
+        return brack[1];
     }
 };
