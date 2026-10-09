@@ -25,20 +25,22 @@ class Solution
     {
       Node *front = q.front();
       q.pop();
+      
       if (front->data == target)
-      {
         res = front;
-      }
+
       if (front->left)
       {
         nodetoParent[front->left] = front;
         q.push(front->left);
       }
+
       if (front->right)
       {
         nodetoParent[front->right] = front;
         q.push(front->right);
       }
+
     }
 
     return res;
