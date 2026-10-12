@@ -1,3 +1,7 @@
+// 2897. Apply Operations on Array to Maximize Sum of Squares
+// Time : O(n + k) where n is size of nums
+// Space : O(1)
+
 #define MOD 1000000007
 class Solution {
 public:
