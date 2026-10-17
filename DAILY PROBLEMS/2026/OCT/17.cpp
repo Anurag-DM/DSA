@@ -1,28 +1,51 @@
+// 3551. Minimum Swaps to Sort by Digit Sum
+// Time Complexity: O(n log n)
+// Space Complexity: O(n)
+
 class Solution {
+    static int calcsum(int x) {
+        int s = 0;
+        while (x) {
+            s += x % 10;
+            x /= 10;
+        }
+        return s;
+    }
+
+    static bool cmp(pair<int, int> &a, pair<int, int> &b) {
+        int x = calcsum(a.first), y = calcsum(b.first);
+        if (x != y) return x < y;
+        return a.first < b.first;
+    }
+
 public:
     int minSwaps(vector<int>& nums) {
-        auto digit_sum = [](int x) {
-            int s = 0;
-            for (; x > 0; x /= 10) s += x % 10;
-            return s;
-        };
         int n = nums.size();
-        vector<pair<int, int>> keyed;  // (digit sum, value)
-        for (int x : nums) keyed.emplace_back(digit_sum(x), x);
-        ranges::sort(keyed);
-        unordered_map<int, int> rank;  // final position of each value
-        for (int k = 0; k < n; k++) rank[keyed[k].second] = k;
-        vector<int> home;  // where the value at each position must go
-        for (int x : nums) home.push_back(rank[x]);
+        vector<pair<int, int>> a;
 
-        int swaps = 0;
+        for (int i = 0; i < n; i++)
+            a.push_back({nums[i], i});
+
+        sort(a.begin(), a.end(), cmp);
+
+        vector<bool> vis(n, false);
+        int ans = 0;
+
         for (int i = 0; i < n; i++) {
-            while (home[i] != i) {  // send the value at i home, take that spot's value in exchange
-                int j = home[i];
-                swap(home[i], home[j]);
-                swaps++;
+            if (vis[i] || a[i].second == i)
+                continue;
+
+            int j = i, cnt = 0;
+
+            while (!vis[j]) {
+                vis[j] = true;
+                j = a[j].second;
+                cnt++;
             }
+
+            ans += cnt - 1;
         }
-        return swaps;
+
+        return ans;
     }
 };
