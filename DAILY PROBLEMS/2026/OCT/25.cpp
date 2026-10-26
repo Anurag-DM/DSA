@@ -1,3 +1,5 @@
+// Time Complexity: O(m * n)
+// Space Complexity: O(m * n)
 class Solution {
     void solve(vector<vector<bool>> &vis, vector<vector<int>>& grid, bool &cond, int i, int j, int m, int n){
         if( i < 0 || i >= m || j < 0 || j >= n){
