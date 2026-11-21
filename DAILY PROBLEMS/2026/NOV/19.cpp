@@ -1,6 +1,8 @@
 // 2567. Minimum Score by Changing Two Elements
 // Time : O(n)
 // Space : O(1)
+
+
 class Solution {
 public:
     int minimizeSum(vector<int>& nums) {
